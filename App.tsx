@@ -3,8 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import { FontAwesome } from '@expo/vector-icons'
 
-import Photos from './src/pages/Photos'
-import Favorites from './src/pages/Favorites'
+import { Routes } from './src/routes/homeRoutes'
 
 const Stack = createBottomTabNavigator()
 
@@ -13,26 +12,22 @@ export default function App() {
     // @ts-ignore
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={Photos}
-          options={{
-            tabBarLabel: 'Photos',
-            tabBarIcon: () => (
-              <FontAwesome name="home" size={24} color="black" />
-            ),
-          }}
-        />
-        <Stack.Screen
-          name="Saved"
-          component={Favorites}
-          options={{
-            tabBarLabel: 'Favorites',
-            tabBarIcon: () => (
-              <FontAwesome name="bookmark" size={24} color="black" />
-            ),
-          }}
-        />
+        {Routes.map(({ component, name, iconName, iconSize, color, bagde }) => (
+          <Stack.Screen
+            // @ts-ignore
+            key={name}
+            navigationKey={name}
+            name={name}
+            component={component}
+            options={{
+              tabBarLabel: name,
+              tabBarBadge: bagde ? 3 : undefined,
+              tabBarIcon: () => (
+                <FontAwesome name={iconName} size={iconSize} color={color} />
+              ),
+            }}
+          />
+        ))}
       </Stack.Navigator>
     </NavigationContainer>
   )
