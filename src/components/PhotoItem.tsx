@@ -4,7 +4,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import { useDispatch } from 'react-redux'
 import { ItemType } from '../types'
 
-import { toggleFavorites } from '../redux/reducers/favorites-reducer'
+import { toggleFavorites } from '../redux/slices/favorites'
 
 type ItemProps = {
   item: ItemType
@@ -14,8 +14,6 @@ export default function Item({ item }: ItemProps) {
   const dispatch = useDispatch()
 
   const handlePress = () => {
-    console.log(item)
-
     dispatch(toggleFavorites(item))
   }
 

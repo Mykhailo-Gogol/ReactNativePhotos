@@ -1,12 +1,23 @@
-import { StyleSheet, Text, SafeAreaView } from 'react-native'
+import { useEffect, useState } from 'react'
+import { StyleSheet, SafeAreaView } from 'react-native'
 
-import { persistorState } from '../redux/store'
+import { useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
+import { ItemType } from '../types'
+
+import PhotoList from '../components/PhotoList'
 
 export default function Favorites() {
-  const state = persistorState()
+  const [items, setItems] = useState<ItemType[]>([])
+  const favorits = useSelector((state: RootState) => state.favorits)
+
+  useEffect(() => {
+    setItems(favorits)
+  }, [favorits])
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text>{JSON.stringify(state, null, 2)}</Text>
+      <PhotoList items={items} />
     </SafeAreaView>
   )
 }

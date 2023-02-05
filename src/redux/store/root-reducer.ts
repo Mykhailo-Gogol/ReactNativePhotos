@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import { favoritesReducer } from './favorites-reducer'
+import { favoritesReducer } from '../slices/favorites'
 
 export const rootReducer = combineReducers({
   favorits: favoritesReducer,
