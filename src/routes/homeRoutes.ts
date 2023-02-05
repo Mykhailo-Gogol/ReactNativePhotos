@@ -1,7 +1,6 @@
 import { RouteType } from '../types'
-
-import Photos from '../views/Home'
-import Favorites from '../views/Favorites'
+import Photos from '../pages/Photos'
+import Favorites from '../pages/Favorites'
 
 export const Routes: RouteType[] = [
   {
@@ -9,14 +8,12 @@ export const Routes: RouteType[] = [
     name: 'Photos',
     iconName: 'home',
     iconSize: 24,
-    color: 'black',
   },
   {
     component: Favorites,
     name: 'Favorites',
     iconName: 'bookmark',
     iconSize: 24,
-    color: 'black',
     bagde: true,
   },
 ]

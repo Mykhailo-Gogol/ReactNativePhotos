@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
 import { ItemType } from '../../types'
 
 const initialFavorites: ItemType[] = []
