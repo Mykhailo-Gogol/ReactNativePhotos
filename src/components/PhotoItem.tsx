@@ -1,12 +1,29 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
-export default function Item({ item }: any) {
+import { useDispatch } from 'react-redux'
+import { ItemType } from '../types'
+
+import { toggleFavorites } from '../redux/reducers/favorites-reducer'
+
+type ItemProps = {
+  item: ItemType
+}
+
+export default function Item({ item }: ItemProps) {
+  const dispatch = useDispatch()
+
+  const handlePress = () => {
+    console.log(item)
+
+    dispatch(toggleFavorites(item))
+  }
+
   return (
     <View style={styles.item}>
       <View style={styles.header}>
         <Text style={styles.title}>{item.title}</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handlePress}>
           <FontAwesome name="thumbs-o-up" size={24} color="black" />
         </TouchableOpacity>
       </View>
@@ -24,6 +41,7 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: '#ddd',
     marginVertical: 8,
+    marginHorizontal: 8,
     borderRadius: 20,
     overflow: 'hidden',
   },

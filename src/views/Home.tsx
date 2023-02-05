@@ -2,7 +2,7 @@ import { StyleSheet, SafeAreaView, StatusBar } from 'react-native'
 // @ts-ignore
 import { useState, useEffect } from 'react'
 
-import Photos from '../components/Photos'
+import PhotoList from '../components/PhotoList'
 
 export default function Home() {
   const [photos, setPhotos] = useState([])
@@ -20,7 +20,7 @@ export default function Home() {
   }, [])
   return (
     <SafeAreaView style={styles.container}>
-      <Photos items={photos} />
+      <PhotoList items={photos} />
     </SafeAreaView>
   )
 }

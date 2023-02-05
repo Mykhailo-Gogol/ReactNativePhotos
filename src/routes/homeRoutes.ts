@@ -1,7 +1,7 @@
 import { RouteType } from '../types'
 
-import Photos from '../pages/Home'
-import Favorites from '../pages/Favorites'
+import Photos from '../views/Home'
+import Favorites from '../views/Favorites'
 
 export const Routes: RouteType[] = [
   {

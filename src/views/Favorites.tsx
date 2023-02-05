@@ -1,12 +1,12 @@
 import { StyleSheet, Text, SafeAreaView } from 'react-native'
 
+import { persistorState } from '../redux/store'
+
 export default function Favorites() {
-  // useEffect(() => {
-  //   console.log('aaaaa')
-  // })
+  const state = persistorState()
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Favorites</Text>
+      <Text>{JSON.stringify(state, null, 2)}</Text>
     </SafeAreaView>
   )
 }

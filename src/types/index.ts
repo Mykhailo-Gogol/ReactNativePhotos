@@ -6,3 +6,9 @@ export type RouteType = {
   color: string
   bagde?: boolean
 }
+
+export type ItemType = {
+  id: number
+  title: string
+  thumbnailUrl: string
+}
