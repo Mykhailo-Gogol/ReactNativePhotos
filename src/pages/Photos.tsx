@@ -37,6 +37,7 @@ const Photos: FC = () => {
               .toLocaleLowerCase()
               .includes(search.trim().toLocaleLowerCase())
           )}
+          fallback="Loading"
         />
       </>
     </View>

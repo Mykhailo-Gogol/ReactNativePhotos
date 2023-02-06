@@ -16,7 +16,7 @@ const Favorites: FC = () => {
 
   return (
     <View style={globals.container}>
-      <PhotosList items={items} />
+      <PhotosList items={items} fallback="Favorites list is empty" />
     </View>
   )
 }

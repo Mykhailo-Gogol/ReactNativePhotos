@@ -1,9 +1,7 @@
 import { useEffect, useRef, FC, PropsWithChildren } from 'react'
-import { Animated, ViewStyle } from 'react-native'
+import { Animated } from 'react-native'
 
-type FadeInAnimationProps = PropsWithChildren<{
-  index: number
-}>
+type FadeInAnimationProps = PropsWithChildren<{ index: number }>
 
 const FadeInAnimation: FC<FadeInAnimationProps> = ({ index, children }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current
