@@ -2,7 +2,7 @@ import { FlatList } from 'react-native'
 import { ItemType } from '../types'
 import PhotoItem from './PhotoItem'
 
-type PhotosProps = {
+interface PhotosProps {
   items: ItemType[]
 }
 

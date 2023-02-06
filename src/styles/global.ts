@@ -5,7 +5,11 @@ export const globals = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 16,
+    paddingVertical: 16,
     paddingHorizontal: 16,
+  },
+  badge: {
+    backgroundColor: '#58a6ff',
+    color: 'white',
   },
 })

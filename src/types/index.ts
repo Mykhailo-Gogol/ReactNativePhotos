@@ -3,7 +3,7 @@ import { FunctionComponent } from 'react'
 type Routes = 'Photos' | 'Favorites'
 type Icons = 'home' | 'bookmark'
 
-export type RouteType = {
+export interface RouteType {
   component: FunctionComponent
   name: Routes
   iconName: Icons
@@ -11,7 +11,7 @@ export type RouteType = {
   bagde?: boolean
 }
 
-export type ItemType = {
+export interface ItemType {
   id: number
   title: string
   thumbnailUrl: string

@@ -1,12 +1,19 @@
 import { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import {
+  Alert,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  Image,
+} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleFavorites } from '../redux/slices/favorites'
 import { RootState } from '../redux/store'
 import { ItemType } from '../types'
 
-type ItemProps = {
+interface ItemProps {
   item: ItemType
 }
 
@@ -24,17 +31,28 @@ export default function Item({ item }: ItemProps) {
 
   const handlePress = () => {
     dispatch(toggleFavorites(item))
+    let alertTitle = favorite ? 'Removed' : 'Added'
+    let alertText = favorite
+      ? 'Item was removed from Favorites'
+      : 'Item was added to Favorites'
+    Alert.alert(alertTitle, alertText)
   }
 
   return (
     <View style={styles.item}>
       <View style={styles.header}>
         <Text style={styles.title}>{item.title}</Text>
-        <TouchableOpacity onPress={handlePress} style={styles.touchable}>
+        <TouchableOpacity
+          onPress={handlePress}
+          style={{
+            ...styles.touchable,
+            borderColor: favorite ? '#58a6ff' : 'black',
+          }}
+        >
           <FontAwesome
             name="thumbs-o-up"
             size={24}
-            color={favorite ? 'blue' : 'black'}
+            color={favorite ? '#58a6ff' : 'black'}
           />
         </TouchableOpacity>
       </View>
@@ -50,8 +68,7 @@ export default function Item({ item }: ItemProps) {
 
 const styles = StyleSheet.create({
   item: {
-    width: 320,
-    backgroundColor: '#ddd',
+    backgroundColor: '#eee',
     borderRadius: 8,
     overflow: 'hidden',
     marginBottom: 16,
@@ -67,11 +84,18 @@ const styles = StyleSheet.create({
   title: {
     width: '75%',
     marginRight: 16,
+    fontWeight: '500',
+    textTransform: 'capitalize',
   },
   image: {
     height: 150,
   },
   touchable: {
-    padding: 8,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderRadius: 9999,
   },
 })

@@ -5,6 +5,7 @@ import { Routes } from '../routes/homeRoutes'
 import { FontAwesome } from '@expo/vector-icons'
 import { useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
+import { globals } from '../styles/global'
 
 const Tab = createBottomTabNavigator()
 
@@ -27,7 +28,10 @@ export default function MainScreen() {
             component={component}
             options={{
               tabBarLabel: name,
+              tabBarActiveTintColor: 'black',
+              tabBarActiveBackgroundColor: '#eee',
               tabBarBadge: bagde && total ? total : undefined,
+              tabBarBadgeStyle: globals.badge,
               tabBarIcon: () => <FontAwesome name={iconName} size={iconSize} />,
             }}
           />

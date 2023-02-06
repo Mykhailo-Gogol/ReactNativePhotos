@@ -1,11 +1,6 @@
 // @ts-ignore
 import { useState, useEffect } from 'react'
-import {
-  View,
-  TextInput,
-  Keyboard,
-  TouchableWithoutFeedback,
-} from 'react-native'
+import { View, Keyboard, TextInput } from 'react-native'
 import { ItemType } from '../types'
 import { globals } from '../styles/global'
 import PhotoList from '../components/PhotoList'
@@ -27,17 +22,23 @@ export default function Photos() {
   }, [])
   return (
     <View style={globals.container}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <>
         <TextInput
           style={styles.input}
           onChangeText={setSearch}
+          onBlur={Keyboard.dismiss}
           value={search}
-          placeholder="Search"
+          placeholder="Quick Search"
           placeholderTextColor="gray"
         />
-      </TouchableWithoutFeedback>
-
-      <PhotoList items={photos.filter(({ title }) => title.includes(search))} />
+        <PhotoList
+          items={photos.filter(({ title }) =>
+            title
+              .toLocaleLowerCase()
+              .includes(search.trim().toLocaleLowerCase())
+          )}
+        />
+      </>
     </View>
   )
 }
