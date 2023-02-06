@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleFavorites } from '../redux/slices/favorites'
+import { favoritesActions } from '../redux/slices/favorites'
 import { RootState } from '../redux/store'
 import { ItemType } from '../types'
 
@@ -30,7 +30,7 @@ const PhotosItem: FC<PhotosItemProps> = ({ item }) => {
   }, [favorites])
 
   const handlePress = () => {
-    dispatch(toggleFavorites(item))
+    dispatch(favoritesActions.toggleFavorites(item))
     let alertTitle = favorite ? 'Removed' : 'Added'
     let alertText = favorite
       ? 'Item was removed from Favorites'
