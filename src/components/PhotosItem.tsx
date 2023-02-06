@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, FC } from 'react'
 import {
   Alert,
   StyleSheet,
@@ -13,11 +13,11 @@ import { toggleFavorites } from '../redux/slices/favorites'
 import { RootState } from '../redux/store'
 import { ItemType } from '../types'
 
-interface ItemProps {
+interface PhotosItemProps {
   item: ItemType
 }
 
-export default function Item({ item }: ItemProps) {
+const PhotosItem: FC<PhotosItemProps> = ({ item }) => {
   const [favorite, setFavorite] = useState<boolean>(false)
   const favorites = useSelector((state: RootState) => state.favorites)
 
@@ -99,3 +99,5 @@ const styles = StyleSheet.create({
     borderRadius: 9999,
   },
 })
+
+export default PhotosItem

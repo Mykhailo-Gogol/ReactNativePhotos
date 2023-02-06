@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, FC } from 'react'
 import { View } from 'react-native'
-
 import { useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
 import { ItemType } from '../types'
 import { globals } from '../styles/global'
-import PhotoList from '../components/PhotoList'
+import PhotosList from '../components/PhotosList'
 
-export default function Favorites() {
+const Favorites: FC = () => {
   const [items, setItems] = useState<ItemType[]>([])
   const favorites = useSelector((state: RootState) => state.favorites)
 
@@ -17,7 +16,9 @@ export default function Favorites() {
 
   return (
     <View style={globals.container}>
-      <PhotoList items={items} />
+      <PhotosList items={items} />
     </View>
   )
 }
+
+export default Favorites

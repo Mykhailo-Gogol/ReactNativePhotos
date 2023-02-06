@@ -1,11 +1,11 @@
 // @ts-ignore
-import { useState, useEffect } from 'react'
-import { View, Keyboard, TextInput } from 'react-native'
+import { useState, useEffect, FC } from 'react'
+import { View, Keyboard, TextInput, StyleSheet } from 'react-native'
 import { ItemType } from '../types'
 import { globals } from '../styles/global'
-import PhotoList from '../components/PhotoList'
+import PhotosList from '../components/PhotosList'
 
-export default function Photos() {
+const Photos: FC = () => {
   const [photos, setPhotos] = useState<ItemType[]>([])
   const [search, setSearch] = useState('')
 
@@ -31,7 +31,7 @@ export default function Photos() {
           placeholder="Quick Search"
           placeholderTextColor="gray"
         />
-        <PhotoList
+        <PhotosList
           items={photos.filter(({ title }) =>
             title
               .toLocaleLowerCase()
@@ -43,8 +43,6 @@ export default function Photos() {
   )
 }
 
-import { StyleSheet } from 'react-native'
-
 export const styles = StyleSheet.create({
   input: {
     width: 320,
@@ -54,3 +52,5 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 })
+
+export default Photos

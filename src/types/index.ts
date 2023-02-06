@@ -1,10 +1,10 @@
-import { FunctionComponent } from 'react'
+import { FC } from 'react'
 
 type Routes = 'Photos' | 'Favorites'
 type Icons = 'home' | 'bookmark'
 
 export interface RouteType {
-  component: FunctionComponent
+  component: FC
   name: Routes
   iconName: Icons
   iconSize: number
@@ -13,6 +13,8 @@ export interface RouteType {
 
 export interface ItemType {
   id: number
+  albumId: number
   title: string
+  url: string
   thumbnailUrl: string
 }
