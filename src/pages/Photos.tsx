@@ -1,38 +1,21 @@
 // @ts-ignore
 import { useState, useEffect, FC } from 'react'
 import { View, Keyboard, TextInput, StyleSheet } from 'react-native'
-import { ItemType } from '../types'
 import { globals } from '../styles/global'
 import { useDispatch, useSelector } from 'react-redux'
-import { loadingActions } from '../redux/slices/loading'
 import { RootState } from '../redux/store'
+import { fetchPhotos } from '../redux/operations/fetchPhotos'
 import PhotosList from '../components/PhotosList'
 
 const Photos: FC = () => {
-  const dispatch = useDispatch()
-  const loading = useSelector((state: RootState) => state.loading)
-
-  const [photos, setPhotos] = useState<ItemType[]>([])
   const [search, setSearch] = useState('')
 
-  const getPhotos = async () => {
-    try {
-      await dispatch(loadingActions.request())
-
-      const photos = await fetch(
-        'https://jsonplaceholder.typicode.com/photos'
-      ).then((res) => res.json())
-
-      setPhotos(photos)
-    } catch (err) {
-      console.log(err)
-    } finally {
-      dispatch(loadingActions.finally())
-    }
-  }
+  const dispatch = useDispatch()
+  const photos = useSelector((state: RootState) => state.photos.items)
+  const loading = useSelector((state: RootState) => state.photos.loading)
 
   useEffect(() => {
-    getPhotos()
+    dispatch(fetchPhotos() as any)
   }, [])
 
   return (
@@ -47,7 +30,7 @@ const Photos: FC = () => {
           placeholderTextColor="gray"
         />
         <PhotosList
-          items={photos.filter(({ title }) =>
+          items={photos?.filter(({ title }) =>
             title
               .toLocaleLowerCase()
               .includes(search.trim().toLocaleLowerCase())
