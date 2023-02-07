@@ -10,7 +10,7 @@ interface PhotosListProps {
 }
 
 const PhotosList: FC<PhotosListProps> = ({ items, fallback }) => {
-  return items.length ? (
+  return items?.length ? (
     <FlatList
       data={items.slice(0, 10)}
       renderItem={({ item, index }: { item: ItemType; index: number }) => (

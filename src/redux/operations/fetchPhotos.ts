@@ -9,7 +9,7 @@ export const fetchPhotos = () => async (dispatch: any) => {
     ).then((res) => res.json())
 
     dispatch(photosActions.success(photos))
-  } catch (err) {
-    dispatch(photosActions.failure(err))
+  } catch (err: any) {
+    dispatch(photosActions.failure(err.message))
   }
 }

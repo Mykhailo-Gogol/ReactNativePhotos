@@ -1,30 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { AnyAction, createSlice } from '@reduxjs/toolkit'
 import { ItemType } from '../../types/index'
 
 type State = {
   loading: boolean
   items: ItemType[]
-  error: object
+  error: string
 }
 
 const initialState: State = {
   loading: false,
   items: [],
-  error: {},
+  error: '',
 }
 
 const photosSlice = createSlice({
   name: 'photos',
   initialState,
   reducers: {
-    request: (state) => {
+    request: (state: State) => {
       return { ...state, loading: true }
     },
-    success: (state, action) => {
-      return { ...state, items: action.payload }
+    success: (state: State, action: AnyAction) => {
+      return { ...state, items: action.payload, loading: false }
     },
-    failure: (state, action) => {
-      return { ...state, error: action.payload }
+    failure: (state: State, action: AnyAction) => {
+      return { ...state, error: action.payload, loading: false }
     },
   },
 })
